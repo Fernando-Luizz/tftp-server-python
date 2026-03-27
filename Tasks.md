@@ -1,13 +1,13 @@
 # ⚙️ Organização e Tarefas — Equipe Servidor
 **Repositório:** `tftp-server-python`  
-**Objetivo:** Construir um servidor TFTP isolado, aderente à RFC 1350, capaz de atender clientes externos/nativos, com divisão de trabalho fiel aos diagramas C4 do Servidor.
+**Objetivo:** Construir um servidor TFTP isolado, aderente à RFC 1350, capaz de atender clientes externos/nativos, seguindo aos diagramas C4 do Servidor.
 
 ---
 
 # Diretriz Arquitetural
 Este repositório representa **somente o lado Servidor** do projeto.
 
-A organização da equipe seguirá fielmente os **3 níveis de diagramas C4** do servidor:
+A organização da equipe seguirá os **3 níveis de diagramas C4** do servidor:
 
 - **Nível 1 — Contexto:** mostra o sistema `TFTP Server Python` e suas entidades externas.
 - **Nível 2 — Container:** mostra a aplicação Python do servidor e suas dependências externas.
@@ -15,11 +15,9 @@ A organização da equipe seguirá fielmente os **3 níveis de diagramas C4** do
 
 ## Regra principal
 Cada integrante será responsável por **componentes C4 específicos**.  
-O código de cada pessoa deve ficar restrito à sua própria “caixinha” no diagrama de Componentes (Nível 3).
-
 ---
 
-# Como o C4 do Servidor deve ser interpretado
+# Implementação modelo C4
 
 ## Nível 1 — Contexto
 O diagrama de Contexto do Servidor deve representar:
@@ -28,9 +26,6 @@ O diagrama de Contexto do Servidor deve representar:
 - **Entidade externa principal:** `Cliente TFTP Externo/Nativo`
 - **Dependência externa:** `Sistema de Arquivos Local`
 - **Relação principal:** troca de arquivos via protocolo TFTP
-
-Esse nível serve para mostrar **quem interage com o servidor**.
-
 ---
 
 ## Nível 2 — Container
@@ -42,9 +37,6 @@ O diagrama de Container do Servidor deve representar:
   - Sistema de Arquivos Local
 
 Como o projeto é pequeno, o servidor pode ser representado por **um único container de aplicação**, mas ele ainda deve aparecer separado das entidades externas.
-
-Esse nível serve para mostrar **onde o servidor roda e com o que ele se conecta**.
-
 ---
 
 ## Nível 3 — Componentes
@@ -56,7 +48,6 @@ O diagrama de Componentes do Servidor deve representar exatamente estas caixinha
 - `UDP Socket Adapter`
 - `File Access`
 
-Esse nível serve para mostrar **como o servidor foi dividido internamente**.
 
 ## Relações esperadas entre os componentes
 - `CLI / Argument Parser` chama o `Transfer Manager`
@@ -70,7 +61,6 @@ Esse nível serve para mostrar **como o servidor foi dividido internamente**.
 - `TFTP Packet API` não deve acessar rede
 - `TFTP Packet API` não deve acessar disco
 - `CLI / Argument Parser` não deve montar pacotes nem ler/gravar arquivos diretamente
-
 ---
 
 # Papéis e Responsabilidades da Equipe Servidor
@@ -83,7 +73,7 @@ Responsável por modelar e defender a arquitetura do Servidor nos 3 níveis do C
 - **Nível 2 — Container**
 - **Nível 3 — Componentes**
 
-### Componentes sob sua responsabilidade
+### Componentes sob  responsabilidade:
 - `CLI / Argument Parser`
 - `Bootstrap / Inicialização do Servidor`
 
@@ -102,26 +92,17 @@ Responsável por modelar e defender a arquitetura do Servidor nos 3 níveis do C
 - Subir os arquivos dos colegas como stubs vazios ou com assinatura inicial
 
 ### Responsabilidade de revisão
-Você aprova exclusivamente os Pull Requests do:
-
+Aprovar  os Pull Requests do:
 - **Colega 2**
 - **Colega 3**
 
 ### Critérios de revisão
-Ao revisar os PRs, você deve verificar se:
+Ao revisar os PRs, verificar se:
 
-- cada pessoa implementou apenas sua própria caixinha;
+- cada pessoa implementou apenas sua própria caixinha do diagrama de componentes;
 - o código continua fiel ao diagrama C4 Nível 3;
 - `server.py` continua sendo apenas bootstrap;
 - ninguém misturou lógica de rede, protocolo e disco no mesmo componente.
-
-### Não deve implementar
-- parsing binário de pacotes;
-- máquina de estados da transferência;
-- lógica bruta de socket;
-- leitura e gravação direta de arquivos fora do bootstrap.
-
----
 
 ## 2. [Nome] — Desenvolvedor Core
 ### Componentes C4 sob responsabilidade
@@ -214,7 +195,7 @@ Esse componente deve conter apenas:
 - decidir fluxo do protocolo.
 
 ### Prova de interoperabilidade
-Esse integrante é responsável por:
+ Responsável por:
 - testar o servidor com cliente TFTP externo/nativo;
 - gerar prints para o README;
 - comprovar que a borda do sistema está funcional.
@@ -285,7 +266,6 @@ NÃO PODE:
 ---
 
 # Estrutura de Pastas do Repositório
-> O Arquiteto/Revisor sobe essa estrutura inicialmente com arquivos vazios ou com stubs.
 
 ```text
 tftp-server-python/
