@@ -1,0 +1,2 @@
+class TftpServerError(Exception):
+    pass
