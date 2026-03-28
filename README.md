@@ -6,9 +6,7 @@ Servidor TFTP em Python, alinhado à [RFC 1350](https://www.rfc-editor.org/rfc/r
 
 Atender clientes TFTP reais, com RRQ e WRQ conforme a RFC, mantendo fronteiras entre componentes como no diagrama nível 3.
 
-## C4
-
-Em `docs/c4/` devem ficar os `.drawio` com os nomes `nivel-1-contexto`, `nivel-2-container`, `nivel-3-componentes`. Os PNG exportados com o mesmo prefixo alimentam as imagens abaixo.
+## Modelo C4
 
 ![Nível 1 — contexto](docs/c4/nivel-1-contexto.png)
 
@@ -60,6 +58,6 @@ pip install -e .
 python -m tftp_server.server --root caminho/para/diretorio
 ```
 
-O `transfer_manager` ainda não está implementado; o comando valida argumentos e termina com `NotImplementedError` até o colega 2 fechar o `serve`.
+O `transfer_manager` ainda não está implementado; o comando valida argumentos e termina com `NotImplementedError` até alguém fechar o `serve`.
 
 Opções: `--host` (default `0.0.0.0`), `--port` (default `69`), `--root` (obrigatório).
