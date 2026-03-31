@@ -104,7 +104,7 @@ Ao revisar os PRs, verificar se:
 - `server.py` continua sendo apenas bootstrap;
 - ninguém misturou lógica de rede, protocolo e disco no mesmo componente.
 
-## 2. [Nome] — Desenvolvedor Core
+## 2. Gabriel Pepes — Desenvolvedor Core
 ### Componentes C4 sob responsabilidade
 - `TFTP Packet API`
 - `Transfer Manager`
