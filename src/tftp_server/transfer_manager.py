@@ -22,7 +22,10 @@ def serve(bind_host: str, port: int, root_dir: Path) -> None:
     print(f"TFTP server running on {bind_host}:{port}")
 
     while True:
-        data, addr = udp.recvfrom(1024)
+        try:
+            data, addr = udp.recvfrom(1024)
+        except TimeoutError:
+            continue
 
         try:
             packet = parse_datagram(data)
